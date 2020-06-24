@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Tweet;
 use App\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -42,8 +43,17 @@ class User extends Authenticatable
         return "https://i.pravatar.cc/40?u=". $this->email;
     }
     public function timeline(){
-        return Tweet::where('user_id', $this->id)->latest()->get();
+        $friends = $this->follows->pluck('id');
+        // $ids->push($this->id);
+        return Tweet::whereIn('user_id', $friends)
+                ->orWhere('user_id', $this->id)
+                ->latest()->get();
     }
+
+    public function tweets(){
+        return $this->hasMany(Tweet::class);
+    }
+
     public function follow(User $user){
         return $this->follows->save($user);
     }

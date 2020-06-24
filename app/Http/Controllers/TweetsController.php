@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class TweetsController extends Controller
 {
+
+    public function index()
+    {   
+        $tweets = auth()->user()->timeline();
+        return view('home', compact('tweets'));
+    }
+    
     public function store(){
       $attributes = request()->validate(['body' => 'required | max:255']);
 
@@ -15,6 +22,6 @@ class TweetsController extends Controller
         'body' => $attributes['body']
       ]);
 
-      return redirect('/home');
+      return redirect('/tweets');
     }
 }
