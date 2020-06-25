@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+
 
 Route::middleware('auth')->group( function() {
   Route::get('/tweets', 'TweetsController@index')->name('home');
@@ -25,3 +25,6 @@ Route::middleware('auth')->group( function() {
 
 });
 
+Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
+
+Auth::routes();
