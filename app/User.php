@@ -56,8 +56,13 @@ class User extends Authenticatable
 
 
 
-    public function getRouteKeyName(){
+    public function path( $append='' ){
 
-        return 'name';
+        $path = route('profile',  $this->name);
+        if ( $append ) {
+            $path = $path .'/'. $append;
+        }
+
+        return $path;
     }
 }
