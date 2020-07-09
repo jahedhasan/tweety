@@ -39,8 +39,15 @@ class User extends Authenticatable
     ];
 
     public function getAvatarAttribute($value){
-        return asset($value);
+        return asset($value ? : '/images/default-avatar.jpeg');
     }
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value); //or
+        //$this->attributes['password'] = Hash::make($value);
+    }
+
+
     public function timeline(){
         $friends = $this->follows->pluck('id');
         // $ids->push($this->id);

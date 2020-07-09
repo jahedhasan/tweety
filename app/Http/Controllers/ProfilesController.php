@@ -26,7 +26,7 @@ class ProfilesController extends Controller
         [
           'username' => ['required', 'string', 'max:255', 'alpha_dash', Rule::unique('users')->ignore($user) ],
           'name' => ['required', 'string', 'max:255'],
-          'avatar' => ['required', 'file'],
+          'avatar' => [ 'file'],
           'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
           'password' => [
                 'string',
@@ -36,8 +36,13 @@ class ProfilesController extends Controller
                 'confirmed'
             ],
         ]);
-//need to password hash //Hash::make
-      $data['avatar'] = request('avatar')->store('avatars');
+//need to password hash 
+      //$data['password'] = bcrypt( request('password') ); 
+      //Or another way used / setPasswordAttribute($value) on User Model
+      if ( request('avatar') ) {
+        $data['avatar'] = request('avatar')->store('avatars');
+      }
+      
       $user->update($data);
       return redirect( $user->path() );
     }
