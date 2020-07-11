@@ -54,5 +54,5 @@
 
   </header>
 
-  @include('_timeline',[ 'tweets' => $user->tweets])
+  @include('_timeline',[ 'tweets' => $tweets ])
 </x-app>
