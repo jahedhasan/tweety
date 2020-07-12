@@ -5,7 +5,7 @@
 ```
 
 
-#foreign relationship
+##   foreign relationship
 
 ```php 
 Schema::table('likes', function (Blueprint $table) {
