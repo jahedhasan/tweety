@@ -13,10 +13,10 @@ Schema::table('likes', function (Blueprint $table) {
 
     $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
 });
-`      
-###  Both are same
+```                        
+###  Both are same                  
 ```php 
 Schema::table('liskes', function (Blueprint $table) {
     $table->foreignId('user_id')->constrained()->onDelete('cascade');;
 })
-`
+```
