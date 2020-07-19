@@ -19,4 +19,15 @@ Schema::table('likes', function (Blueprint $table) {
 Schema::table('liskes', function (Blueprint $table) {
     $table->foreignId('user_id')->constrained()->onDelete('cascade');
 })
+```       
+
+
+
+##  Use Turbolink for      
+    access/go navigation subpage without Reload full site/page
+    @faster
+
+
+```js
+   <script src="https://unpkg.com/turbolinks"></script>
 ```
